@@ -1,6 +1,7 @@
 package service;
 
-public interface CaseService
-{
-    Long createSnapCase(String countyCd, String officeCd, String createdBy) throws Exception;
+import java.util.Date;
+
+public interface CaseService {
+    Long createSnapCase(String countyCd, String officeCd, Date applicationDt, String createdBy) throws Exception;
 }
