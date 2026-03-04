@@ -7,6 +7,10 @@
 
     <display-name>IES-SNAP</display-name>
 
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>CreateCaseServlet</servlet-name>
         <servlet-class>web.CreateCaseServlet</servlet-class>
