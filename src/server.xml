@@ -1,0 +1,28 @@
+<server description="IES Liberty Server">
+
+    <featureManager>
+        <feature>servlet-4.0</feature>
+        <feature>jdbc-4.2</feature>
+        <feature>jndi-1.0</feature>
+    </featureManager>
+
+    <library id="OracleLib">
+        <fileset dir="/config/resources/jdbc" includes="ojdbc8.jar"/>
+    </library>
+
+    <jdbcDriver id="OracleDriver" libraryRef="OracleLib"/>
+
+    <dataSource id="IESDS" jndiName="jdbc/IESDB">
+        <jdbcDriverRef>OracleDriver</jdbcDriverRef>
+
+        <properties.oracle
+                URL="jdbc:oracle:thin:@oracle-xe:1521/XEPDB1"
+                user="system"
+                password="Oracle123"/>
+
+        <connectionManager
+                maxPoolSize="20"
+                minPoolSize="2"/>
+    </dataSource>
+
+</server>
