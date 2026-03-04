@@ -1,7 +1,7 @@
-FROM icr.io/appcafe/open-liberty:full-java8-openj9
+FROM tomcat:9.0-jdk8-temurin
 
-COPY --chown=1001:0 server.xml /config/
-COPY --chown=1001:0 target/yourapp.war /config/dropins/
-COPY --chown=1001:0 resources/jdbc/ojdbc8.jar /config/resources/jdbc/
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY target/snap-application.war /usr/local/tomcat/webapps/ROOT.war
 
-EXPOSE 9080 9443
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
