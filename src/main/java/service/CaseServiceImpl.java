@@ -13,35 +13,41 @@ public class CaseServiceImpl implements CaseService {
 
     private IESCaseDao caseDao = new IESCaseDaoImpl();
 
-    public Long createSnapCase(String countyCd, String officeCd, String createdBy) throws Exception {
+    public Long createSnapCase(String countyCd, String officeCd, Date applicationDt, String createdBy) throws Exception {
         Connection con = null;
 
         try {
             con = DBConnectionManager.getInstance().getConnection();
-            con.setAutoCommit(false); // transaction start
+            con.setAutoCommit(false);
 
             IESCase c = new IESCase();
             c.setProgramCd("SNAP");
             c.setCaseStatusCd("INTAKE_CREATED");
             c.setCountyCd(countyCd);
             c.setOfficeCd(officeCd);
-            c.setApplicationDt(new Date());
+            c.setApplicationDt(applicationDt);
             c.setActiveYn("Y");
             c.setCreatedBy(createdBy);
 
             Long caseId = caseDao.createCase(con, c);
 
-            con.commit(); // transaction success
+            con.commit();
             return caseId;
 
         } catch (Exception e) {
             if (con != null) {
-                try { con.rollback(); } catch (SQLException ex) { /* log */ }
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                }
             }
             throw e;
         } finally {
             if (con != null) {
-                try { con.close(); } catch (SQLException ex) { /* log */ }
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                }
             }
         }
     }
