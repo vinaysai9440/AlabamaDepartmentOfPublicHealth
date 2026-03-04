@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>CreateCaseServlet</servlet-name>
-        <servlet-class>controller.CreateCaseServlet</servlet-class>
+        <servlet-class>web.CreateCaseServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
